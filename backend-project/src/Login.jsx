@@ -22,11 +22,9 @@ const Login = () => {
         setMessage(result.message);
 
         if (result.status === 'success') {
-            // Store user ID and first name in session storage
-            sessionStorage.setItem('userId', result.user_id); // Ensure that your backend returns user_id
-            sessionStorage.setItem('firstName', result.first_name); // Use first_name from the response
+            sessionStorage.setItem('userId', result.user_id);
+            sessionStorage.setItem('firstName', result.first_name);
 
-            // Navigate to the dashboard
             navigate('/dashboard');
         }
     };

@@ -30,15 +30,12 @@ const Enrollment = () => {
             setMessage(result.message);
     
             if (result.status === 'success') {
-                // Clear previous session data
-                sessionStorage.clear(); // Clear previous session data
+                sessionStorage.clear();
             
-                // Store the new user's ID and first name from the result
-                sessionStorage.setItem('userId', result.user_id); // Store new user's ID from the result
-                sessionStorage.setItem('firstName', fname); // Store the first name
+                sessionStorage.setItem('userId', result.user_id);
+                sessionStorage.setItem('firstName', fname);
                 
-                // Navigate to the dashboard page
-                navigate('/dashboard'); // Redirect to the dashboard page
+                navigate('/dashboard');
             }            
         } catch (error) {
             console.error("Error parsing JSON response:", error);

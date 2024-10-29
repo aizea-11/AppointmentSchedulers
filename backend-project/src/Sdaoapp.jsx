@@ -5,8 +5,8 @@ const Sdaoapp = () => {
     const [date, setDate] = useState('');
     const [timeSlot, setTimeSlot] = useState('');
     const [concerns, setConcerns] = useState('');
-    const [availableTimeSlots, setAvailableTimeSlots] = useState([]); // All available slots
-    const [bookedSlots, setBookedSlots] = useState([]); // Booked time slots
+    const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
+    const [bookedSlots, setBookedSlots] = useState([]);
     const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
 
@@ -20,10 +20,9 @@ const Sdaoapp = () => {
         }
     }, [navigate]);
 
-    // Fetch available time slots when date changes
     useEffect(() => {
         if (date) {
-            setBookedSlots([]); // Clear booked slots before fetching new ones
+            setBookedSlots([]);
             fetchBookedTimeSlots();
         }
     }, [date]);
@@ -34,7 +33,7 @@ const Sdaoapp = () => {
             const data = await response.json();
 
             if (data.status === 'success') {
-                setBookedSlots(data.booked_slots); // Store booked time slots for the selected date
+                setBookedSlots(data.booked_slots);
             } else {
                 alert(data.message);
             }
@@ -77,7 +76,6 @@ const Sdaoapp = () => {
         }
     };
 
-    // Check if the time slot is booked
     const isBooked = (slot) => bookedSlots.includes(slot);
 
     return (

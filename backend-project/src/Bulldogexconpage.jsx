@@ -2,12 +2,12 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Bulldogexconpage = () => {
-    const navigate = useNavigate(); // Create the navigate function
+    const navigate = useNavigate();
     const location = useLocation();
     const { date, timeSlot } = location.state || {};
 
     const goToDashboard = () => {
-        navigate('/dashboard'); // Navigate to the dashboard
+        navigate('/dashboard');
     };
 
     return (

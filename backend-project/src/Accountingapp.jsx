@@ -22,7 +22,7 @@ const Accountingapp = () => {
 
     useEffect(() => {
         if (date) {
-            setBookedSlots([]); // Clear booked slots before fetching new ones
+            setBookedSlots([]);
             fetchBookedTimeSlots();
         }
     }, [date]);

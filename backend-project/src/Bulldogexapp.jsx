@@ -15,13 +15,13 @@ const Bulldogexapp = () => {
             setUserId(storedUserId);
         } else {
             console.error('User ID is not available');
-            navigate('/login'); // Redirect to login or another page
+            navigate('/login');
         }
     }, [navigate]);
 
     useEffect(() => {
         if (date) {
-            setBookedSlots([]); // Clear booked slots before fetching new ones
+            setBookedSlots([]);
             fetchBookedTimeSlots();
         }
     }, [date]);
@@ -46,10 +46,10 @@ const Bulldogexapp = () => {
 
         if (!userId) {
             console.error('User ID is not defined during submit');
-            return; // Prevent submission if userId is not set
+            return;
         }
 
-        console.log('User ID:', userId); // Check the user ID before booking
+        console.log('User ID:', userId);
 
         const formData = new URLSearchParams();
         formData.append('date', date);
@@ -69,7 +69,6 @@ const Bulldogexapp = () => {
             alert(data.message);
 
             if (data.status === 'success') {
-                // Navigate to the confirmation page and pass the date and time slot
                 navigate('/bulldogexconpage', { state: { date, timeSlot} });
             }
         } catch (error) {

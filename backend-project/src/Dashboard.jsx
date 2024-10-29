@@ -29,12 +29,10 @@ const Dashboard = () => {
     };
 
     const handleLogout = () => {
-        // Optionally clear sessionStorage on logout
-        sessionStorage.clear(); // Clear session storage if needed
+        sessionStorage.clear();
         navigate('/');
     };
 
-    // Get the first name from session storage
     const firstName = sessionStorage.getItem('firstName');
 
     return (

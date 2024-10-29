@@ -16,13 +16,13 @@ const Facultyapp = () => {
             setUserId(storedUserId);
         } else {
             console.error('User ID is not available');
-            navigate('/login'); // Redirect to login or another page
+            navigate('/login');
         }
     }, [navigate]);
 
     useEffect(() => {
         if (date) {
-            setBookedSlots([]); // Clear booked slots before fetching new ones
+            setBookedSlots([]);
             fetchBookedTimeSlots();
         }
     }, [date]);
@@ -33,7 +33,7 @@ const Facultyapp = () => {
             const data = await response.json();
 
             if (data.status === 'success') {
-                setBookedSlots(data.booked_slots); // Store booked time slots for the selected date
+                setBookedSlots(data.booked_slots);
             } else {
                 alert(data.message);
             }
@@ -47,10 +47,10 @@ const Facultyapp = () => {
 
         if (!userId) {
             console.error('User ID is not defined during submit');
-            return; // Prevent submission if userId is not set
+            return;
         }
 
-        console.log('User ID:', userId); // Check the user ID before booking
+        console.log('User ID:', userId);
 
         const formData = new URLSearchParams();
         formData.append('date', date);
@@ -71,7 +71,6 @@ const Facultyapp = () => {
             alert(data.message);
 
             if (data.status === 'success') {
-                // Navigate to the confirmation page and pass the date and time slot
                 navigate('/facultyconpage', { state: { date, timeSlot, faculty } });
             }
         } catch (error) {
