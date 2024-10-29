@@ -1,62 +1,94 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react"; 
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-    const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+  const adminCredentials = {
+    email: 'admin@nudasma.com',
+    password: 'admin123',
+  };
 
-        const response = await fetch('http://localhost/asbackend/login.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({ email, password }).toString(),
-        });
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-        const result = await response.json();
-        setMessage(result.message);
+    if (email === adminCredentials.email && password === adminCredentials.password) {
+      sessionStorage.setItem('userId', 'admin');
+      sessionStorage.setItem('firstName', 'Admin');
+      
+      navigate('/admin');
+      return;
+    }
 
-        if (result.status === 'success') {
-            sessionStorage.setItem('userId', result.user_id);
-            sessionStorage.setItem('firstName', result.first_name);
+    const response = await fetch('http://localhost/asbackend/login.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({ email, password }).toString(),
+    });
 
-            navigate('/dashboard');
-        }
-    };
+    const result = await response.json();
+    setMessage(result.message);
 
-    return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleLogin}>
-                <label htmlFor="email">Email</label><br />
-                <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                /><br /><br />
+    if (result.status === 'success') {
+      sessionStorage.setItem('userId', result.user_id);
+      sessionStorage.setItem('firstName', result.first_name);
 
-                <label htmlFor="password">Password</label><br />
-                <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                /><br /><br />
+      navigate('/dashboard');
+    }
+  };
 
-                <button type="submit">Login</button>
-            </form>
-            {message && <p>{message}</p>}
-            <button onClick={() => navigate("/enrollment")}>Go to Enrollment</button>
-        </div>
-    );
+  return (
+    <div className="login-container">
+      <div className="login-form">
+        <h1 className="form-title">Login</h1>
+        <form onSubmit={handleLogin}>
+          <div className="input-group">
+            <Mail className="input-icon" />
+            <input
+              type="email"
+              id="email"
+              value={email}
+              className="form-input"
+              placeholder="Enter your Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <Lock className="input-icon" />
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              value={password}
+              className="form-input"
+              placeholder="Enter your Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeOff /> : <Eye />}
+            </span>
+          </div>
+
+          <button type="submit" className="btn-login">Login</button>
+        </form>
+        {message && <p className="login-message">{message}</p>}
+        <button className="btn-enrollment" onClick={() => navigate("/enrollment")}>
+          Go to Enrollment
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default Login;

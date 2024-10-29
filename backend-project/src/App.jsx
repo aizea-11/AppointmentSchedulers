@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import React from 'react';
 import './App.css'
 import Login from './Login'
+import Admin from './admin/Admin'
 import Enrollment from './Enrollment'
 import Dashboard from './Dashboard'
 import Faculty from './Faculty'
@@ -23,11 +24,13 @@ import Accounting from './Accounting'
 import Accountingapp from './Accountingapp'
 import Accountingconpage from './Accountingconpage'
 
+
 function App() {
   return (
     <Router>
         <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="admin" element={<Admin />} />
             <Route path="/enrollment" element={<Enrollment />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/faculty" element={<Faculty />} />
