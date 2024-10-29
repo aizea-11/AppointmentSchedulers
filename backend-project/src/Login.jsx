@@ -84,7 +84,7 @@ const Login = () => {
         </form>
         {message && <p className="login-message">{message}</p>}
         <button className="btn-enrollment" onClick={() => navigate("/enrollment")}>
-          Go to Enrollment
+          Enroll Now!
         </button>
       </div>
     </div>
