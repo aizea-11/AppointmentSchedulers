@@ -1,0 +1,97 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #CFCFCF;
+  }
+  
+  .dashboard-container {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .header-box {
+    background-color: #353E8D; /* Set the background color for the header */
+    color: white;
+    padding: 7px;
+  }
+  
+  .university-name {
+    font-size: 32px;
+    margin-bottom: 0px;
+
+  }
+  
+  .welcome-section {
+    text-align: center;
+    flex-grow: 1; /* Allows it to take available space */
+  }
+  
+  .menu-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .menu-container .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 20px; /* Add spacing between buttons */
+    margin-top: 30px; /* Adds space at the top of the cards */
+    margin-bottom: 30px; /* Adds space at the bottom of the cards */
+  }
+  
+  .button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+    background-color: #353E8D;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #5b65c0;
+  }
+  
+  h1, h2 {
+    color: white;
+  }
+  
+  .logout-button {
+    background-color: #FF5C5C; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* Pushes the logout button to the right */
+  }
+  
+  .logout-button:hover {
+    background-color: #ff7a7a;
+  }
+  

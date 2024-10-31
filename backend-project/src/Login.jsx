@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react"; 
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -20,7 +21,6 @@ const Login = () => {
     if (email === adminCredentials.email && password === adminCredentials.password) {
       sessionStorage.setItem('userId', 'admin');
       sessionStorage.setItem('firstName', 'Admin');
-      
       navigate('/admin');
       return;
     }
@@ -39,7 +39,6 @@ const Login = () => {
     if (result.status === 'success') {
       sessionStorage.setItem('userId', result.user_id);
       sessionStorage.setItem('firstName', result.first_name);
-
       navigate('/dashboard');
     }
   };
@@ -47,7 +46,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-form">
-        <h1 className="form-title">Login</h1>
+        <h2 className="form-title">Appointment Scheduler</h2>
         <form onSubmit={handleLogin}>
           <div className="input-group">
             <Mail className="input-icon" />
