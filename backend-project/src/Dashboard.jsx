@@ -1,4 +1,3 @@
-// Dashboard.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Menu.css';
@@ -17,7 +16,6 @@ const Dashboard = () => {
     return (
         <div className="dashboard-container">
             <div className="header-box">
-                <h2 className="university-name">NU DASMARINAS</h2>
                 <div className="welcome-section">
                     <h1>Hello, {firstName ? firstName : 'User'}!</h1>
                     <p>Welcome to your dashboard.</p>
