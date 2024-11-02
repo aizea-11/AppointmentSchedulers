@@ -23,6 +23,9 @@ import Bulldogexconpage from './Bulldogexconpage'
 import Accounting from './Accounting'
 import Accountingapp from './Accountingapp'
 import Accountingconpage from './Accountingconpage'
+import User from './admin/User'
+import Departments from './admin/Departments'
+import Appointments from './admin/Appointments'
 
 
 function App() {
@@ -48,6 +51,9 @@ function App() {
             <Route path="/accounting" element={<Accounting />} />
             <Route path="/accountingapp" element={<Accountingapp />} />
             <Route path="/accountingconpage" element={<Accountingconpage />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/departments" element={<Departments />} />
+            <Route path="/appointments" element={<Appointments />} />
         </Routes>
     </Router>
 );

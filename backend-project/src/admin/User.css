@@ -1,0 +1,119 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #cfcfcf;
+  }
+
+  .user-container {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .headeruser-box {
+    background-color: #353E8D;
+    color: white;
+    padding: 44px;
+  }
+
+  .welcomeuser-section {
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  h1 {
+    color: white;
+    font-size: 60px;
+  }
+
+  h2 {
+    color: black;
+    font-size: large;
+  }
+
+  
+  th,
+  td {
+    border: 1px solid #353E8D;;
+    text-align: center;
+    padding: px;
+    font-size: 15px;
+  }
+
+  th {
+    background-color: white;
+  }
+
+  td {
+    background-color: white;
+  }
+
+  .menuuser-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    width: 100%;
+  }
+
+  .menuuser-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .menuuser-container .rowuser {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    gap: 10px;
+    margin-top: 70px;
+    margin-bottom: 287px;
+  }
+
+  .add-user-section {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .add-user-section input {
+    width: 150px;
+    padding: 5px;
+    margin: 5px;
+    font-size: 14px;
+  }
+  
+  .add-user-section button {
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .gobackUser {
+    background-color: #FF5C5C; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: auto;
+  }
+  
