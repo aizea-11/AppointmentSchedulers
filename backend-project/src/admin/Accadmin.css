@@ -1,0 +1,87 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #CFCFCF;
+  }
+
+  .accadmin-container {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .headeraccadmin-box {
+    background-color: #353E8D;
+    color: white;
+    padding: 64px;
+  }
+
+  .gobackAccadmin {
+    background-color: #FF5C5C; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: auto;
+  }
+
+  .accadmin-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    width: 100%;
+  }
+
+  .accad-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .accad-container .accadrow-one {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 70%;
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 193px;
+  }
+
+  .accad-container .accadrow-two {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 30%;
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 193px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border: 1px solid #353E8D;;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  th {
+    background-color: white;
+  }
+
+  td {
+    background-color: white;
+  }

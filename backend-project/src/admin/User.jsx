@@ -82,6 +82,7 @@ function User() {
             <table>
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Course</th>
@@ -91,7 +92,8 @@ function User() {
               </thead>
               <tbody>
                 {users.map(user => (
-                  <tr key={user.id}>
+                  <tr>
+                    <td>{user.id}</td>
                     <td>{user.fname}</td>
                     <td>{user.lname}</td>
                     <td>{user.course}</td>

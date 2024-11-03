@@ -36,11 +36,6 @@ const Admin = () => {
                             <br />
                             <span>Departments</span>
                         </div>
-                        <div className="button" onClick={() => navigate('/appointments')}>
-                            <FontAwesomeIcon icon={faPhone} size="3x" />
-                            <br />
-                            <span>Appointments</span>
-                        </div>
                     </div>
                 </div>
             </div>

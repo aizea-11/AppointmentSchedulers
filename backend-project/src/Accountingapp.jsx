@@ -5,7 +5,7 @@ const Accountingapp = () => {
     const [date, setDate] = useState('');
     const [timeSlot, setTimeSlot] = useState('');
     const [concerns, setConcerns] = useState('');
-    const [availableTimeSlots, setAvailableTimeSlots] = useState([]); 
+    const [availableConcerns, setAvailableConcerns] = useState([]);
     const [bookedSlots, setBookedSlots] = useState([]); 
     const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
@@ -26,6 +26,25 @@ const Accountingapp = () => {
             fetchBookedTimeSlots();
         }
     }, [date]);
+
+    useEffect(() => {
+        fetchConcerns();
+    }, []);
+
+    const fetchConcerns = async () => {
+        try {
+            const response = await fetch('http://localhost/asbackend/getconcernsacc.php');
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                setAvailableConcerns(data.concerns);
+            } else {
+                console.error('Failed to fetch concerns:', data.message);
+            }
+        } catch (error) {
+            console.error('Error fetching concerns:', error);
+        }
+    };
 
     const fetchBookedTimeSlots = async () => {
         try {
@@ -89,9 +108,12 @@ const Accountingapp = () => {
                 onChange={(e) => setConcerns(e.target.value)}
                 required
             >
-                <option value="">--Select a Concerns--</option>
-                <option value="Tuition">Tuition</option>
-                <option value="Tour">Tour</option>
+                <option value="">--Select a Concern--</option>
+                {availableConcerns.map((concern) => (
+                    <option key={concern.id} value={concern.name}>
+                        {concern.name}
+                    </option>
+                ))}
             </select>
 
             <label htmlFor="date">Select Date:</label>

@@ -25,8 +25,7 @@ import Accountingapp from './Accountingapp'
 import Accountingconpage from './Accountingconpage'
 import User from './admin/User'
 import Departments from './admin/Departments'
-import Appointments from './admin/Appointments'
-
+import AccountingAdmin from './admin/AccountingAdmin'
 
 function App() {
   return (
@@ -53,7 +52,7 @@ function App() {
             <Route path="/accountingconpage" element={<Accountingconpage />} />
             <Route path="/user" element={<User />} />
             <Route path="/departments" element={<Departments />} />
-            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/accadmin" element={<AccountingAdmin />} />
         </Routes>
     </Router>
 );
