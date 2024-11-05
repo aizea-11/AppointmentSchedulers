@@ -28,24 +28,29 @@ const Dashboard = () => {
                     <div className="row">
                         <div className="button" onClick={() => navigate('/faculty')}>
                             <FontAwesomeIcon icon={faUser} size="3x" />
+                            <br />
                             <span>Faculty</span>
                         </div>
                         <div className="button" onClick={() => navigate('/sdao')}>
                             <FontAwesomeIcon icon={faClipboard} size="3x" />
+                            <br />
                             <span>Student's Discipline Office</span>
                         </div>
                         <div className="button" onClick={() => navigate('/itso')}>
                             <FontAwesomeIcon icon={faLaptop} size="3x" />
+                            <br />
                             <span>ITSO</span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="button" onClick={() => navigate('/bulldogex')}>
                             <FontAwesomeIcon icon={faShoppingCart} size="3x" />
+                            <br />
                             <span>Bulldog Exchange</span>
                         </div>
                         <div className="button" onClick={() => navigate('/accounting')}>
                             <FontAwesomeIcon icon={faCalculator} size="3x" />
+                            <br />
                             <span>Accounting</span>
                         </div>
                     </div>

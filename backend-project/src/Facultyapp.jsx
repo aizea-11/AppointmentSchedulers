@@ -8,6 +8,7 @@ const Facultyapp = () => {
     const [availableTimeSlots, setAvailableTimeSlots] = useState([]); 
     const [bookedSlots, setBookedSlots] = useState([]); 
     const [userId, setUserId] = useState(null);
+    const [professors, setProfessors] = useState([]); // Add state for storing professors
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,6 +27,25 @@ const Facultyapp = () => {
             fetchBookedTimeSlots();
         }
     }, [date]);
+
+    useEffect(() => {
+        fetchProfessor();
+    }, []);
+
+    const fetchProfessor = async () => {
+        try {
+            const response = await fetch('http://localhost/asbackend/getproffac.php');
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                setProfessors(data.concernsfac); // Update professors with the fetched data
+            } else {
+                console.error('Failed to fetch professors:', data.message);
+            }
+        } catch (error) {
+            console.error('Error fetching professors:', error);
+        }
+    };
 
     const fetchBookedTimeSlots = async () => {
         try {
@@ -90,10 +110,11 @@ const Facultyapp = () => {
                 required
             >
                 <option value="">--Select a Professor--</option>
-                <option value="Dr. John Smith">Dr. John Smith</option>
-                <option value="Dr. Sarah Lee">Dr. Sarah Lee</option>
-                <option value="Prof. Michael Johnson">Prof. Michael Johnson</option>
-                <option value="Mr. Rudante Galapon">Mr. Rudante Galapon</option>
+                {professors.map((prof) => (
+                    <option key={prof.id} value={prof.name}>
+                        {prof.name}
+                    </option>
+                ))}
             </select>
 
             <label htmlFor="date">Select Date:</label>

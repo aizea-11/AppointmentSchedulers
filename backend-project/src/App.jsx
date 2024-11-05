@@ -26,6 +26,10 @@ import Accountingconpage from './Accountingconpage'
 import User from './admin/User'
 import Departments from './admin/Departments'
 import AccountingAdmin from './admin/AccountingAdmin'
+import BullexAdmin from './admin/BullexAdmin'
+import FacultyAdmin from './admin/FacultyAdmin'
+import ItsoAdmin from './admin/ItsoAdmin'
+import SdaoAdmin from './admin/SdaoAdmin'
 
 function App() {
   return (
@@ -53,6 +57,10 @@ function App() {
             <Route path="/user" element={<User />} />
             <Route path="/departments" element={<Departments />} />
             <Route path="/accadmin" element={<AccountingAdmin />} />
+            <Route path="/bulladmin" element={<BullexAdmin />} />
+            <Route path="/facadmin" element={<FacultyAdmin />} />
+            <Route path="/itsoadmin" element={<ItsoAdmin />} />
+            <Route path="/sdaoadmin" element={<SdaoAdmin />} />
         </Routes>
     </Router>
 );
