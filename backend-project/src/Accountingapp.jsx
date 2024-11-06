@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Accountingapp.css';
 
 const Accountingapp = () => {
     const [date, setDate] = useState('');
     const [timeSlot, setTimeSlot] = useState('');
     const [concerns, setConcerns] = useState('');
     const [availableConcerns, setAvailableConcerns] = useState([]);
-    const [bookedSlots, setBookedSlots] = useState([]); 
+    const [bookedSlots, setBookedSlots] = useState([]);
     const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
 
@@ -69,8 +70,6 @@ const Accountingapp = () => {
             return; 
         }
 
-        console.log('User ID:', userId); 
-
         const formData = new URLSearchParams();
         formData.append('date', date);
         formData.append('time_slot', timeSlot);
@@ -100,13 +99,17 @@ const Accountingapp = () => {
     const isBooked = (slot) => bookedSlots.includes(slot);
 
     return (
-        <form id="appointmentForm" onSubmit={handleSubmit}>
-            <label htmlFor="concerns">Concerns:</label><br />
+        <div className='accapp-container'>
+        <form id="appointmentForm" onSubmit={handleSubmit} className="accappointment-form">
+            <h2>Book an Appointment</h2>
+            
+            <label htmlFor="concerns">Concerns:</label>
             <select 
                 id="concerns" 
                 value={concerns} 
                 onChange={(e) => setConcerns(e.target.value)}
                 required
+                className="accappform-input"
             >
                 <option value="">--Select a Concern--</option>
                 {availableConcerns.map((concern) => (
@@ -124,6 +127,7 @@ const Accountingapp = () => {
                 value={date} 
                 onChange={(e) => setDate(e.target.value)} 
                 required 
+                className="accappformdate-input"
             />
 
             <label htmlFor="time_slot">Select Time Slot:</label>
@@ -133,17 +137,19 @@ const Accountingapp = () => {
                 value={timeSlot} 
                 onChange={(e) => setTimeSlot(e.target.value)} 
                 required
+                className="accappform-input"
             >
                 <option value="">--Select a Time--</option>
-                {["08:00:00", "09:00:00", "10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00"].map((slot) => (
+                {["08:00:00", "09:00:00", "10:00:00", "11:00:00", "13:00:00", "14:00:00", "15:00:00"].map((slot) => (
                     <option key={slot} value={slot} disabled={isBooked(slot)}>
                         {slot} {isBooked(slot) ? "(Booked)" : ""}
                     </option>
                 ))}
             </select>
 
-            <button type="submit" disabled={!timeSlot || isBooked(timeSlot)}>Book Appointment</button>
+            <button type="submit" disabled={!timeSlot || isBooked(timeSlot)} className="accappsubmit-btn">Book Appointment</button>
         </form>
+        </div>    
     );
 };
 

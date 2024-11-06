@@ -46,33 +46,34 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-form">
-        <h2 className="form-title">Appointment Scheduler</h2>
+        <h2 className="loginform-title">Appointment Scheduler</h2>
         <form onSubmit={handleLogin}>
-          <div className="input-group">
-            <Mail className="input-icon" />
+          <div className="logininput-group">
+            <Mail className="logininput-icon" />
             <input
               type="email"
               id="email"
               value={email}
-              className="form-input"
+              className="loginform-input"
               placeholder="Enter your Email"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
-          <div className="input-group">
-            <Lock className="input-icon" />
+          <div className="logininput-group">
+            <Lock className="logininput-icon" />
             <input
               type={showPassword ? "text" : "password"}
               id="password"
               value={password}
-              className="form-input"
+              className="loginform-input"
               placeholder="Enter your Password"
               onChange={(e) => setPassword(e.target.value)}
               required
             />
             <span
-              className="toggle-password"
+              className="login
+              toggle-password"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <EyeOff /> : <Eye />}

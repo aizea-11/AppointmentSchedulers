@@ -1,30 +1,32 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './Bulldogexconpage.css';
 
 const Bulldogexconpage = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { date, timeSlot } = location.state || {};
+    const { date, timeSlot, concerns } = location.state || {};
 
     const goToDashboard = () => {
         navigate('/dashboard');
     };
 
     return (
-        <div>
+        <div className='bullcon-container'>
+        <div className="bullconfirmation-container">
             <h1>Booking Confirmed!</h1>
-            <p>Your appointment has been successfully booked.</p>
+            <p className="bullsuccess-message">Your appointment has been successfully booked.</p>
             {date && timeSlot ? (
-                <div>
+                <div className="bullappointment-details">
                     <h2>Appointment Details:</h2>
-                    <p>Date: {date}</p>
-                    <p>Time Slot: {timeSlot}</p>
+                    <p><strong>Date:</strong> {date}</p>
+                    <p><strong>Time Slot:</strong> {timeSlot}</p>
                 </div>
             ) : (
-                <p>No appointment details available.</p>
+                <p className="bullno-details">No appointment details available.</p>
             )}
-            <br /><br />
-            <button type="button" onClick={goToDashboard}>Go to Dashboard</button>
+            <button type="button" onClick={goToDashboard} className="dashboard-btn">Go to Dashboard</button>
+        </div>
         </div>
     );
 };

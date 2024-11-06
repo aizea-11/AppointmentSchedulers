@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Bulldogexapp.css';
 
 const Bulldogexapp = () => {
     const [date, setDate] = useState('');
     const [timeSlot, setTimeSlot] = useState('');
-    const [availableTimeSlots, setAvailableTimeSlots] = useState([]); 
-    const [bookedSlots, setBookedSlots] = useState([]); 
+    const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
+    const [bookedSlots, setBookedSlots] = useState([]);
     const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
 
@@ -32,7 +33,7 @@ const Bulldogexapp = () => {
             const data = await response.json();
 
             if (data.status === 'success') {
-                setBookedSlots(data.booked_slots); 
+                setBookedSlots(data.booked_slots);
             } else {
                 alert(data.message);
             }
@@ -48,8 +49,6 @@ const Bulldogexapp = () => {
             console.error('User ID is not defined during submit');
             return;
         }
-
-        console.log('User ID:', userId);
 
         const formData = new URLSearchParams();
         formData.append('date', date);
@@ -69,7 +68,7 @@ const Bulldogexapp = () => {
             alert(data.message);
 
             if (data.status === 'success') {
-                navigate('/bulldogexconpage', { state: { date, timeSlot} });
+                navigate('/bulldogexconpage', { state: { date, timeSlot } });
             }
         } catch (error) {
             console.error('Error:', error);
@@ -79,36 +78,41 @@ const Bulldogexapp = () => {
     const isBooked = (slot) => bookedSlots.includes(slot);
 
     return (
-        <form id="appointmentForm" onSubmit={handleSubmit}>
+        <div className="bulldogexapp-container">
+            <form id="appointmentForm" onSubmit={handleSubmit} className="bulldogexapp-form">
+                <h2>Bulldogex Appointment Booking</h2>
 
-            <label htmlFor="date">Select Date:</label>
-            <input 
-                type="date" 
-                id="date" 
-                name="date" 
-                value={date} 
-                onChange={(e) => setDate(e.target.value)} 
-                required 
-            />
+                <label htmlFor="date">Select Date:</label>
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    required
+                    className="bulldogexapp-date-input"
+                />
 
-            <label htmlFor="time_slot">Select Time Slot:</label>
-            <select 
-                id="time_slot" 
-                name="time_slot" 
-                value={timeSlot} 
-                onChange={(e) => setTimeSlot(e.target.value)} 
-                required
-            >
-                <option value="">--Select a Time--</option>
-                {["08:00:00", "09:00:00", "10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00"].map((slot) => (
-                    <option key={slot} value={slot} disabled={isBooked(slot)}>
-                        {slot} {isBooked(slot) ? "(Booked)" : ""}
-                    </option>
-                ))}
-            </select>
+                <label htmlFor="time_slot">Select Time Slot:</label>
+                <select
+                    id="time_slot"
+                    name="time_slot"
+                    value={timeSlot}
+                    onChange={(e) => setTimeSlot(e.target.value)}
+                    required
+                    className="bulldogexapp-input"
+                >
+                    <option value="">--Select a Time--</option>
+                    {["08:00:00", "09:00:00", "10:00:00", "11:00:00", "13:00:00", "14:00:00", "15:00:00"].map((slot) => (
+                        <option key={slot} value={slot} disabled={isBooked(slot)}>
+                            {slot} {isBooked(slot) ? "(Booked)" : ""}
+                        </option>
+                    ))}
+                </select>
 
-            <button type="submit">Book Appointment</button>
-        </form>
+                <button type="submit" disabled={!timeSlot || isBooked(timeSlot)} className="bulldogexapp-submit-btn">Book Appointment</button>
+            </form>
+        </div>
     );
 };
 

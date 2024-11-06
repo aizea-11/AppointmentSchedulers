@@ -33,18 +33,18 @@ body, html {
     text-align: center;
 }
   
-.form-title {
+.loginform-title {
     font-size: 2rem;
     margin-bottom: 20px;
     color: #333;
 }
   
-.input-group {
+.logininput-group {
     position: relative;
     margin-bottom: 20px;
 }
   
-.input-icon {
+.logininput-icon {
     position: absolute;
     left: 10px;
     top: 50%;
@@ -52,7 +52,7 @@ body, html {
     color: #aaa;
 }
   
-.form-input {
+.loginform-input {
     width: 87%;
     padding: 10px 10px 10px 40px;
     font-size: 1rem;
@@ -61,12 +61,12 @@ body, html {
     transition: border 0.3s ease;
 }
   
-.form-input:focus {
+.loginform-input:focus {
     border: 1px solid #007bff;
     outline: none;
 }
   
-.toggle-password {
+.logintoggle-password {
     position: absolute;
     right: 15px;
     top: 60%;

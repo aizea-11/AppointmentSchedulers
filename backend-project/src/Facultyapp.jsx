@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Facultyapp.css';   
 
 const Facultyapp = () => {
     const [date, setDate] = useState('');
     const [timeSlot, setTimeSlot] = useState('');
     const [faculty, setFaculty] = useState('');
-    const [availableTimeSlots, setAvailableTimeSlots] = useState([]); 
-    const [bookedSlots, setBookedSlots] = useState([]); 
+    const [bookedSlots, setBookedSlots] = useState([]);
     const [userId, setUserId] = useState(null);
-    const [professors, setProfessors] = useState([]);  
+    const [professors, setProfessors] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -70,8 +70,6 @@ const Facultyapp = () => {
             return;
         }
 
-        console.log('User ID:', userId);
-
         const formData = new URLSearchParams();
         formData.append('date', date);
         formData.append('time_slot', timeSlot);
@@ -101,50 +99,57 @@ const Facultyapp = () => {
     const isBooked = (slot) => bookedSlots.includes(slot);
 
     return (
-        <form id="appointmentForm" onSubmit={handleSubmit}>
-            <label htmlFor="professor">Select Professor:</label><br />
-            <select 
-                id="professor" 
-                value={faculty} 
-                onChange={(e) => setFaculty(e.target.value)}
-                required
-            >
-                <option value="">--Select a Professor--</option>
-                {professors.map((prof) => (
-                    <option key={prof.id} value={prof.name}>
-                        {prof.name}
-                    </option>
-                ))}
-            </select>
+        <div className='facapp-container'>
+            <form id="appointmentForm" onSubmit={handleSubmit} className="facappointment-form">
+                <h2>Book a Faculty Appointment</h2>
 
-            <label htmlFor="date">Select Date:</label>
-            <input 
-                type="date" 
-                id="date" 
-                name="date" 
-                value={date} 
-                onChange={(e) => setDate(e.target.value)} 
-                required 
-            />
+                <label htmlFor="professor">Select Professor:</label>
+                <select 
+                    id="professor" 
+                    value={faculty} 
+                    onChange={(e) => setFaculty(e.target.value)} 
+                    required
+                    className="facappform-input"
+                >
+                    <option value="">--Select a Professor--</option>
+                    {professors.map((prof) => (
+                        <option key={prof.id} value={prof.name}>
+                            {prof.name}
+                        </option>
+                    ))}
+                </select>
 
-            <label htmlFor="time_slot">Select Time Slot:</label>
-            <select 
-                id="time_slot" 
-                name="time_slot" 
-                value={timeSlot} 
-                onChange={(e) => setTimeSlot(e.target.value)} 
-                required
-            >
-                <option value="">--Select a Time--</option>
-                {["08:00:00", "09:00:00", "10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00"].map((slot) => (
-                    <option key={slot} value={slot} disabled={isBooked(slot)}>
-                        {slot} {isBooked(slot) ? "(Booked)" : ""}
-                    </option>
-                ))}
-            </select>
+                <label htmlFor="date">Select Date:</label>
+                <input 
+                    type="date" 
+                    id="date" 
+                    name="date" 
+                    value={date} 
+                    onChange={(e) => setDate(e.target.value)} 
+                    required 
+                    className="facappformdate-input"
+                />
 
-            <button type="submit">Book Appointment</button>
-        </form>
+                <label htmlFor="time_slot">Select Time Slot:</label>
+                <select 
+                    id="time_slot" 
+                    name="time_slot" 
+                    value={timeSlot} 
+                    onChange={(e) => setTimeSlot(e.target.value)} 
+                    required
+                    className="facappform-input"
+                >
+                    <option value="">--Select a Time--</option>
+                    {["08:00:00", "09:00:00", "10:00:00", "11:00:00", "13:00:00", "14:00:00", "15:00:00"].map((slot) => (
+                        <option key={slot} value={slot} disabled={isBooked(slot)}>
+                            {slot} {isBooked(slot) ? "(Booked)" : ""}
+                        </option>
+                    ))}
+                </select>
+
+                <button type="submit" disabled={!timeSlot || isBooked(timeSlot)} className="facappsubmit-btn">Book Appointment</button>
+            </form>
+        </div>
     );
 };
 

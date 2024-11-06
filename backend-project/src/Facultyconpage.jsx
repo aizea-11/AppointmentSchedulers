@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import './Facultyconpage.css';
 
 const Facultyconpage = () => {
     const navigate = useNavigate();
@@ -11,21 +12,22 @@ const Facultyconpage = () => {
     };
 
     return (
-        <div>
+        <div className='faccon-container'>
+        <div className="facconfirmation-container">
             <h1>Booking Confirmed!</h1>
-            <p>Your appointment has been successfully booked.</p>
+            <p className="facsuccess-message">Your appointment has been successfully booked.</p>
             {date && timeSlot ? (
-                <div>
+                <div className="facappointment-details">
                     <h2>Appointment Details:</h2>
-                    <p>Date: {date}</p>
-                    <p>Time Slot: {timeSlot}</p>
-                    <p>Professor: {faculty}</p>
+                    <p><strong>Date:</strong> {date}</p>
+                    <p><strong>Time Slot:</strong> {timeSlot}</p>
+                    <p><strong>Professor:</strong> {faculty}</p>
                 </div>
             ) : (
-                <p>No appointment details available.</p>
+                <p className="facno-details">No appointment details available.</p>
             )}
-            <br /><br />
-            <button type="button" onClick={goToDashboard}>Go to Dashboard</button>
+            <button type="button" onClick={goToDashboard} className="dashboard-btn">Go to Dashboard</button>
+        </div>
         </div>
     );
 };

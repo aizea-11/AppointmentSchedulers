@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Itsoapp.css';
 
 const Itsoapp = () => {
     const [date, setDate] = useState('');
     const [timeSlot, setTimeSlot] = useState('');
-    const [availableTimeSlots, setAvailableTimeSlots] = useState([]); 
     const [bookedSlots, setBookedSlots] = useState([]); 
     const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
@@ -49,8 +49,6 @@ const Itsoapp = () => {
             return;
         }
 
-        console.log('User ID:', userId);
-
         const formData = new URLSearchParams();
         formData.append('date', date);
         formData.append('time_slot', timeSlot);
@@ -79,35 +77,41 @@ const Itsoapp = () => {
     const isBooked = (slot) => bookedSlots.includes(slot);
 
     return (
-        <form id="appointmentForm" onSubmit={handleSubmit}>
-            <label htmlFor="date">Select Date:</label>
-            <input 
-                type="date" 
-                id="date" 
-                name="date" 
-                value={date} 
-                onChange={(e) => setDate(e.target.value)} 
-                required 
-            />
+        <div className="itsoapp-container">
+            <form id="appointmentForm" onSubmit={handleSubmit} className="itsoapp-form">
+                <h2>Book an Appointment</h2>
 
-            <label htmlFor="time_slot">Select Time Slot:</label>
-            <select 
-                id="time_slot" 
-                name="time_slot" 
-                value={timeSlot} 
-                onChange={(e) => setTimeSlot(e.target.value)} 
-                required
-            >
-                <option value="">--Select a Time--</option>
-                {["08:00:00", "09:00:00", "10:00:00", "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00"].map((slot) => (
-                    <option key={slot} value={slot} disabled={isBooked(slot)}>
-                        {slot} {isBooked(slot) ? "(Booked)" : ""}
-                    </option>
-                ))}
-            </select>
+                <label htmlFor="date">Select Date:</label>
+                <input 
+                    type="date" 
+                    id="date" 
+                    name="date" 
+                    value={date} 
+                    onChange={(e) => setDate(e.target.value)} 
+                    required
+                    className="itsodateapp-input"
+                />
 
-            <button type="submit">Book Appointment</button>
-        </form>
+                <label htmlFor="time_slot">Select Time Slot:</label>
+                <select 
+                    id="time_slot" 
+                    name="time_slot" 
+                    value={timeSlot} 
+                    onChange={(e) => setTimeSlot(e.target.value)} 
+                    required
+                    className="itsoapp-input"
+                >
+                    <option value="">--Select a Time--</option>
+                    {["08:00:00", "09:00:00", "10:00:00", "11:00:00", "13:00:00", "14:00:00", "15:00:00"].map((slot) => (
+                        <option key={slot} value={slot} disabled={isBooked(slot)}>
+                            {slot} {isBooked(slot) ? "(Booked)" : ""}
+                        </option>
+                    ))}
+                </select>
+
+                <button type="submit" disabled={!timeSlot || isBooked(timeSlot)} className="itsoapp-submit-btn">Book Appointment</button>
+            </form>
+        </div>
     );
 };
 
