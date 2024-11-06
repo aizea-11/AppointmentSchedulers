@@ -42,7 +42,7 @@ const Departments = () => {
                         </div>
                     </div>
                     <div className="deptrow">
-                        <div className="button" onClick={() => navigate('/bullexadmin')}>
+                        <div className="button" onClick={() => navigate('/bulladmin')}>
                             <FontAwesomeIcon icon={faShoppingCart} size="3x" />
                             <br />
                             <span>Bulldog Exchange</span>

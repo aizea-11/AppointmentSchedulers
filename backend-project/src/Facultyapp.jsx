@@ -8,7 +8,7 @@ const Facultyapp = () => {
     const [availableTimeSlots, setAvailableTimeSlots] = useState([]); 
     const [bookedSlots, setBookedSlots] = useState([]); 
     const [userId, setUserId] = useState(null);
-    const [professors, setProfessors] = useState([]); // Add state for storing professors
+    const [professors, setProfessors] = useState([]);  
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const Facultyapp = () => {
             const data = await response.json();
 
             if (data.status === 'success') {
-                setProfessors(data.concernsfac); // Update professors with the fetched data
+                setProfessors(data.concernsfac);
             } else {
                 console.error('Failed to fetch professors:', data.message);
             }

@@ -5,7 +5,7 @@ const Sdaoapp = () => {
     const [date, setDate] = useState('');
     const [timeSlot, setTimeSlot] = useState('');
     const [concerns, setConcerns] = useState('');
-    const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
+    const [availableConcerns, setAvailableConcerns] = useState([]);
     const [bookedSlots, setBookedSlots] = useState([]);
     const [userId, setUserId] = useState(null);
     const navigate = useNavigate();
@@ -26,6 +26,25 @@ const Sdaoapp = () => {
             fetchBookedTimeSlots();
         }
     }, [date]);
+
+    useEffect(() => {
+        fetchConcerns();
+    }, []);
+
+    const fetchConcerns = async () => {
+        try {
+            const response = await fetch('http://localhost/asbackend/getconcernssdao.php');
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                setAvailableConcerns(data.concerns);
+            } else {
+                console.error('Failed to fetch concerns:', data.message);
+            }
+        } catch (error) {
+            console.error('Error fetching concerns:', error);
+        }
+    };
 
     const fetchBookedTimeSlots = async () => {
         try {
@@ -88,8 +107,11 @@ const Sdaoapp = () => {
                 required
             >
                 <option value="">--Select a Concern--</option>
-                <option value="Offense">Offense</option>
-                <option value="ID">ID</option>
+                {availableConcerns.map((concern) => (
+                    <option key={concern.id} value={concern.name}>
+                        {concern.name}
+                    </option>
+                ))}
             </select>
 
             <label htmlFor="date">Select Date:</label>
